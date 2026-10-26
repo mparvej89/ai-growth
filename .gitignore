@@ -30,6 +30,7 @@ log.txt
 /bazel-out
 
 # Node
+node_modules/
 /node_modules
 npm-debug.log
 yarn-error.log
@@ -64,6 +65,12 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+
+# Environment variables / secrets
+.env
+.env.*
+functions/.env
+functions/lib/
 
 # System files
 .DS_Store

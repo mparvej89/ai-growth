@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Upgrade Plan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <div class="pricing-header">
+    <h1>Supercharge Your Growth</h1>
+    <p>Get more credits and generate more content</p>
+  </div>
+
+  <ion-card class="pricing-card">
+    <ion-card-header>
+      <ion-card-title>Pro Plan</ion-card-title>
+      <h2 class="price">₹999<span>/month</span></h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-icon name="checkmark-circle" slot="start" color="success"></ion-icon>
+          <ion-label>100 AI Generations / day</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="checkmark-circle" slot="start" color="success"></ion-icon>
+          <ion-label>Priority Support</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="checkmark-circle" slot="start" color="success"></ion-icon>
+          <ion-label>Custom AI Models</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-button expand="block" class="ion-margin-top" size="large" (click)="upgradePlan()" [disabled]="userData?.plan === 'pro'">
+        {{ userData?.plan === 'pro' ? 'Already Pro' : 'Upgrade Now' }}
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

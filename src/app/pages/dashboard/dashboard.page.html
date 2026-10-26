@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <ion-card *ngIf="userData" class="credit-card">
+    <ion-card-content>
+      <div class="credit-info">
+        <div>
+          <h2>Plan: {{ userData.plan | uppercase }}</h2>
+          <p>Credits remaining: {{ userData.credits }}</p>
+        </div>
+        <ion-button *ngIf="userData.plan === 'free'" (click)="goToUpgrade()" color="tertiary">
+          Upgrade
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Create Content</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input label="Business Type" labelPlacement="floating" placeholder="e.g. Coffee Shop" [(ngModel)]="business"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Offer/Promo" labelPlacement="floating" placeholder="e.g. Buy 1 Get 1 Free" [(ngModel)]="offer"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="City/Location" labelPlacement="floating" placeholder="e.g. New York" [(ngModel)]="location"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" class="ion-margin-top" (click)="generate()" [disabled]="!business || !offer || !location">
+        <ion-icon name="sparkles" slot="start"></ion-icon>
+        Generate
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="result" class="result-card">
+    <ion-card-header>
+      <ion-card-title color="success">Your AI Content</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      
+      <h3>Instagram Caption</h3>
+      <p class="result-box">{{ result.instagram }}</p>
+      
+      <h3>WhatsApp Message</h3>
+      <p class="result-box">{{ result.whatsapp }}</p>
+
+      <h3>Poster Copy</h3>
+      <p class="result-box">{{ result.poster }}</p>
+
+      <div *ngIf="result.posterImage" class="ion-margin-top ion-margin-bottom">
+        <h3>Poster Image</h3>
+        <img [src]="result.posterImage" alt="Generated Poster Image" style="max-width: 100%; border-radius: 8px; margin-top: 10px; min-height: 250px; background-color: #e0e0e0; display: block;" />
+        <p style="font-size: 0.85em; color: gray; text-align: center; margin-top: 5px;">
+          <ion-icon name="time-outline"></ion-icon> Image is generating... (may take 10-15 seconds to load)
+        </p>
+      </div>
+
+      <h3>Call to Action</h3>
+      <p class="result-box">{{ result.cta }}</p>
+
+      <h3>Hashtags</h3>
+      <p class="result-box hashtags">
+        <span *ngFor="let tag of result.hashtags">#{{ tag }}</span>
+      </p>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
